@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Directories and filenames
-SOURCESDIR=/home/talos/sources/vbox                 # Dir where the vbox source code is
-KMKTOOLSSUBDIR=kBuild/bin/linux.amd64                   # where we find the kmk tools e.g. kmk_md5sum
-MD5SUMOUT=$SOURCESDIR/kmk_md5.out                   # log md5sum ops to this file
+SOURCESDIR=/home/user/sources/vbox                                  # Dir where the vbox source code is
+KMKTOOLSSUBDIR=kBuild/bin/linux.amd64                               # where we find the kmk tools e.g. kmk_md5sum
+MD5SUMOUT=$SOURCESDIR/kmk_md5.out                                   # log md5sum ops to this file
 VBOXMANAGE=$SOURCESDIR/out/linux.amd64/release/bin/VXoxManage       # location and name of VBoxManage binary (after renamed)
 
 # Suspicious strings to rename e.g. "VirtualBox" gets renamed to "XirtualXox" (no spaces, same length!)
@@ -24,7 +24,7 @@ PCI80EE=80EF
 PCI80ee=80ef
 
 # Install parameter for VirtualBox app
-USRNAME=talos                                           # username to start VirtualBox
+USRNAME=user                                            # username to start VirtualBox
 IP=192.168.56.1                                         # IP for vbox interface in /etc/network/interfaces
 NETMASK=255.255.255.0                                   # netmask for vbox interface
 NETWORK=192.168.56.0                                    # network for vbox interface
@@ -391,3 +391,4 @@ else
     echo "        broadcast       $BROADCAST"   | sudo tee --append /etc/network/interfaces > /dev/null
     echo "        pre-up /usr/local/bin/VBoxManage list vms 2>&1 >> /dev/null" | sudo tee --append /etc/network/interfaces > /dev/null
 fi
+
