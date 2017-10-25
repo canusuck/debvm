@@ -69,15 +69,15 @@ echo "Начниаем исправление (патчим) ВМ, подожд�
 
 VBOXDIR="/home/user/sources"
 
-SLIC="$VBOXDIR/vboxdata/SLIC.bin"
-DSDT="$VBOXDIR/vboxdata/ACPI-DSDT.bin"
-SSDT="$VBOXDIR/vboxdata/ACPI-SSDT1.bin"
-SPLASH="$VBOXDIR/vboxdata/splash.xcf"
-VIDEO="$VBOXDIR/vboxdata/videorom.bin"
-PCBIOS="$VBOXDIR/vboxdata/pcbios.bin"
-PXE="$VBOXDIR/vboxdata/pxerom.bin"
-ACPIDSDT="$VBOXDIR/vboxdata/ACPI-DSDT-new.bin"
-ACPISSDT="$VBOXDIR/vboxdata/ACPI-SSDT1-new.bin"
+SLIC="$VBOXDIR/obfuscator/SLIC.bin"
+DSDT="$VBOXDIR/obfuscator/ACPI-DSDT.bin"
+SSDT="$VBOXDIR/obfuscator/ACPI-SSDT1.bin"
+SPLASH="$VBOXDIR/obfuscator/splash.xcf"
+VIDEO="$VBOXDIR/obfuscator/videorom.bin"
+PCBIOS="$VBOXDIR/obfuscator/pcbios.bin"
+PXE="$VBOXDIR/obfuscator/pxerom.bin"
+ACPIDSDT="$VBOXDIR/obfuscator/ACPI-DSDT-new.bin"
+ACPISSDT="$VBOXDIR/obfuscator/ACPI-SSDT1-new.bin"
 
 VBOXMAN="/usr/local/bin/VBoxManage"
 
@@ -139,3 +139,15 @@ $VBOXMAN modifyvm "$VMNAME" --macaddress1 6CF1481A9E03          # Изменен
 $VBOXMAN modifyvm "$VMNAME" --paravirtprovider legacy           # Избегаем ообнаружения idetection с помощью cpuid проверки
 
 $VBOXMAN getextradata "$VMNAME" enumerate
+
+##################################################################################################################
+
+echo "################################################################"
+echo "##############            P A I N             ##################"
+echo "##############           T V O Y A            ##################"
+echo "##############         M A C H I N A          ##################"
+echo "##############       O F I C I A L N O        ##################"
+echo "##############      P R O H A C H A N A       ##################"
+echo "##############			 I D I   			##################"
+echo "##############     Y S T A N A V L I V A Y    ##################"
+echo "################################################################"
