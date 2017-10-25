@@ -6,21 +6,21 @@
 
 Так же вы можете изменить название переменных на свои, если будете их изменять, то в скрипте, ищите так же название переменных в первоначальном виде и изменяйте его на ваше, длинну переменных не изменять! 
 
-VirtualBox=XirtualXox
-virtualbox=xirtualxox
-VIRTUALBOX=XIRTUALXOX
-virtualBox=xirtualXox
-vbox=vxox
-Oracle=Xracle
-oracle=xracle
-innotek=xnnotek
-InnoTek=XnnoTek
-INNOTEK=XNNOTEK
-PCI80EE=80EF
-PCI80ee=80ef
-Vbox=Vxox
-VBox=VXox
-VBOX=VXOX
+- VirtualBox=XirtualXox
+- virtualbox=xirtualxox
+- VIRTUALBOX=XIRTUALXOX
+- virtualBox=xirtualXox
+- vbox=vxox
+- Oracle=Xracle
+- oracle=xracle
+- innotek=xnnotek
+- InnoTek=XnnoTek
+- INNOTEK=XNNOTEK
+- PCI80EE=80EF
+- PCI80ee=80ef
+- Vbox=Vxox
+- VBox=VXox
+- VBOX=VXOX
 
 Далее следуйте подсказкам в скрипте
 
