@@ -1,63 +1,72 @@
 #!/bin/bash
-
-# main parts from ...
-# http://blog.prowling.nu/search?updated-min=2013-01-01T00:00:00%2B01:00&updated-max=2014-01-01T00:00:00%2B01:00&max-results=2
-
-# get values from:
 #
-# dmidecode -t0, -t1, t2, -t3, -t4 and -t11 to gather the information need for the script below
+##################################################################################################################
 #
-
-# Change the VBox settings for the guest to use PIIX3 (controller: IDE -> Attributes).
-
-# !!! The script should be run with the guest powered off and the VirtualBox GUI closed !!!
-
-
-# Generate your own SLIC Image
+# Информация к размышлению      :   Скрипт используется для слежки за вами, и последующего траха вас в анал
+# 
+# По воопросам и предложениям   :   https://wwh-club.net/members/crowe.51568/
+#
+##################################################################################################################
+#
+##################################################################################################################
+#
+#           НИЧЕГО НЕ МЕНЯЙТЕ В СКРИПТЕ НУ ТОЛЬКО ГДЕ РАЗРЕШЕНО ОНЛИ, А ТО СУКА БУДЕТЕ ВЫЕБАНЫ В ЖОПУ :)
+#
+##################################################################################################################
+#
+# Для получение значиний скрипт использует:
+#
+# dmidecode -t0, -t1, t2, -t3, -t4 и -t11 для сбора информации, необходимой для  работы скрипта
+#
+#
+# Измените настройки VirtualBox перед использованием
+#
+# !!! Перед использованием скрипта VirtualBox необходимо закрыть (завершить) работу программы !!!
+#
+# Создать свой собственный образ SLIC (таблица описаний лицензий программного обеспечения)
 # sudo dd if=/sys/firmware/acpi/tables/SLIC of=SLIC.bin
 # mv SLIC.bin /home/<user>/VirtualBox\ VMs/<vm>/SLIC.bin
 # sudo chown <vbox users>.<vbox user> /home/<user>/VirtualBox\ VMs/<vm>/SLIC.bin
-
-# Generate your own DSDT
+#
+# Создать свой собственный DSDT (Different System Description Table) - Таблица, получаемая из BIOS. Она хранит в себе полный перечень всех устройств вашего компьютера.
 # dd if=/sys/firmware/acpi/tables/DSDT of=ACPI-DSDT.bin
-# If your replacement ACPI tables from linux are too large (as it was in my case) or for some other reason don't work,
-# download Read & Write Everything from http://rweverything.com/, and use it to dump the full binary default tables under
-# your Windows guest.
-# Copy the file onto your host and edit it either with a hex editor or by decompiling using iasl -d AcpiTbls.bin, then editing
-# the resulting .dsl script and then recompiling using iasl -tc AcpiTbls.dsl. Set the resulting .aml binary table as your ACPI table
-# using VBoxManage setextradata <machine> "VBoxInternal/Devices/acpi/0/Config/CustomTable" "/yourpath/DSDT.aml". Be sure to at least
-# change all vendor names from VBox/Virtualbox/innotek to something else.
+# Если заменяющие таблицы ACPI из Linux слишком велики (как это было в моем случае) или по какой-либо другой причине не работают,
+# загрузите "Read & Write Everything" из http://rweverything.com/и используйте его для сброса полных двоичных таблиц по умолчанию под вашей гостево системоой Windows.
+# Скопируйте файл на вашу оосновную систему и отредактируйте его с помощью 16-го редактора или путем декомпиляции используйте: iasl -d AcpiTbls.bin, затем редактируйте
+# результирующий скрипт .dsl а затем перекомпилировать с помощью; iasl -tc AcpiTbls.dsl. задайте результирующую бинарную таблицу .aml как в вашей таблице ACPI
+# используя VBoxManage setextradata <machine> "VBoxInternal/Devices/acpi/0/Config/CustomTable" "/yourpath/DSDT.aml". 
+# Обязательно измените имена всех поставщиков из VBox/Virtualbox/innotek на что-то другое.
+#
+# Используйте "VBoxManage list vms" для просмотра названия виртуальных машин
+#
+# Использование: "obfuscate.sh"
 
-# use "VBoxManage list vms" to see VM names
-
-# usage: obfuscate.sh"
-
-echo "This script is patching an existing VirtualBox VM. It obfuscates a couple of HW strings"
-echo "Make sure the VM and VirtualBox App is closed before you execute this script"
+echo "Этот скрипт патчит существующую виртуальную машину в VirtualBox. Он обфусцирует (путает) перемнные (апаратные  строки)"
+echo "[ВАЖНО] Перед выполнением этого скрипта убедитесь, что приложение VirtualBox закрыто!"
 
 VMLIST="$(VBoxManage list vms|cut -d' ' -f1)"
-echo "Installed VMs:"
+echo "Установленные виртуальные машины:"
 
 count=0
 for i in $VMLIST; do
     count=`expr $count + 1`
     echo [$count] $i
 done
-echo -n "Which one do you want to patch (1-$count): "
+echo -n "Какую из них вы хотите исправить (пропатчить) (1-$count): "
 read VMNUM
 
 VMNAME=$(echo $VMLIST | cut -d" " -f$VMNUM | cut -d\" -f2)
 
-echo -n "Ok. Should we start patching VM: \"$VMNAME\" (y/N)? "
+echo -n "Хотите ли вы запустить процесс исправления (патча) виртуальной машины: \"$VMNAME\" (y/N)? "
 read s
 if [ "$s" != "y" ]; then
-        echo "ok, nothing done.";
+        echo "Хорошо, ничего не сделано.";
     exit 1
 fi
 
-echo "Start patching, pls wait...."
+echo "Начниаем исправление (патчим) ВМ, подождите..."
 
-VBOXDIR="/home/talos/sources/HU_VirtualBoxObfuscateHW2017"
+VBOXDIR="/home/user/sources/HU_VirtualBoxObfuscateHW2017"
 
 SLIC="$VBOXDIR/vboxdata/SLIC.bin"
 DSDT="$VBOXDIR/vboxdata/ACPI-DSDT.bin"
@@ -124,8 +133,8 @@ $VBOXMAN setextradata "$VMNAME" "VBoxInternal/Devices/vga/0/Config/BiosRom" $VID
 $VBOXMAN setextradata "$VMNAME" "VBoxInternal/Devices/pcbios/0/Config/BiosRom" $PCBIOS
 $VBOXMAN setextradata "$VMNAME" "VBoxInternal/Devices/pcbios/0/Config/LanBootRom" $PXE
 
-$VBOXMAN modifyvm "$VMNAME" --macaddress1 6CF1481A9E03          # change MAC of virtual NIC
-#$VBOXMAN modifyvm "$VMNAME" --bioslogoimagepath $SPLASH        # DOES NOT WORK anymore, dunno what Orcale has changed
-$VBOXMAN modifyvm "$VMNAME" --paravirtprovider legacy           # avoid idetection by cpuid check
+$VBOXMAN modifyvm "$VMNAME" --macaddress1 6CF1481A9E03          # Изменение MAC-адреса виртуальной сетевой карты
+#$VBOXMAN modifyvm "$VMNAME" --bioslogoimagepath $SPLASH        # Эта хуета больше не работает по факту, все притензии к Oracle (создатели VirtualBox)
+$VBOXMAN modifyvm "$VMNAME" --paravirtprovider legacy           # Избегаем ообнаружения idetection с помощью cpuid проверки
 
 $VBOXMAN getextradata "$VMNAME" enumerate
