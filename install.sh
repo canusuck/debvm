@@ -19,8 +19,8 @@ echo -n "Вы хотите запустить процесс удаления н
 if [ "$s" != "y" ]; then
         echo "Очень жаль";
 else
-		echo "Процедура запущен :)"
-		sudo apt-get autoremove && sudo apt-get update && sudo apt-get -y dist-upgrade;
+        echo "Процедура запущен :)"
+        sudo apt-get autoremove && sudo apt-get update && sudo apt-get -y dist-upgrade;
 fi
 
 
@@ -41,20 +41,18 @@ cd
 mkdir sources
 cd sources
 svn co http://www.virtualbox.org/svn/vbox/trunk vbox
-cp install-patch-vbox.sh vbox/install-patch-vbox.sh
+chmod +x patch-vbox.sh obfuscate.sh
+cp patch-vbox.sh vbox/patch-vbox.sh
 cp -R vbox vbox-kopiya
-chmod +x vbox/install-patch-vbox.sh
-chmod +x vbox-kopiya/install-patch-vbox.sh
 cd vbox
 
 
 # update
-echo -n "Открой файл install-patch-vbox.sh текстовым редактором и измени user на свое имя в системе, и так же посмотри 1-й пункт в Readme.md, после изменений сохраняйтесь и нажимайте Y, для отмены нажимайте N (y/N)?"; read s
+echo -n "Открой файл patch-vbox.sh текстовым редактором и измени user на свое имя в системе, и так же посмотри 1-й пункт в Readme.md, после изменений сохраняйтесь и нажимайте Y, для отмены нажимайте N (y/N)?"; read s
 if [ "$s" != "y" ]; then
         echo "Очень жаль";
 else
-		echo "Переходим к созданию дистрибутива с последующей установкой"
-    chmod +x install-patch-vbox.sh
-		./install-patch-vbox.sh;
+        echo "Переходим к созданию дистрибутива с последующей установкой"
+    chmod +x patch-vbox.sh
+        ./patch-vbox.sh;
 fi
-
