@@ -41,8 +41,9 @@
 #
 # Использование: "obfuscate.sh"
 
-echo "Этот скрипт патчит существующую виртуальную машину в VirtualBox. Он обфусцирует (путает) перемнные (апаратные  строки)"
+echo "[ИНФОРМАЦИЯ] Этот скрипт исправляет (патчит) существующую виртуальную машину в VirtualBox. Он обфусцирует (путает) перемнные (апаратные  строки)"
 echo "[ВАЖНО] Перед выполнением этого скрипта убедитесь, что приложение VirtualBox закрыто!"
+echo "[ВАЖНО] Если оно у вас включено не отвечайте на вопрос, закройте приложение VirtualBox"
 
 VMLIST="$(VBoxManage list vms|cut -d' ' -f1)"
 echo "Установленные виртуальные машины:"
@@ -134,7 +135,7 @@ $VBOXMAN setextradata "$VMNAME" "VBoxInternal/Devices/pcbios/0/Config/BiosRom" $
 $VBOXMAN setextradata "$VMNAME" "VBoxInternal/Devices/pcbios/0/Config/LanBootRom" $PXE
 
 $VBOXMAN modifyvm "$VMNAME" --macaddress1 6CF1481A9E03          # Изменение MAC-адреса виртуальной сетевой карты
-#$VBOXMAN modifyvm "$VMNAME" --bioslogoimagepath $SPLASH        # Эта хуета больше не работает по факту, все притензии к Oracle (создатели VirtualBox)
+#$VBOXMAN modifyvm "$VMNAME" --bioslogoimagepath $SPLASH        # Эта хуета больше не работает по факту, так что я ее закоментил, все притензии к Oracle (создатели VirtualBox)
 $VBOXMAN modifyvm "$VMNAME" --paravirtprovider legacy           # Избегаем ообнаружения idetection с помощью cpuid проверки
 
 $VBOXMAN getextradata "$VMNAME" enumerate
