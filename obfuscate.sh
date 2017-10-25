@@ -66,7 +66,7 @@ fi
 
 echo "Начниаем исправление (патчим) ВМ, подождите..."
 
-VBOXDIR="/home/user/sources/HU_VirtualBoxObfuscateHW2017"
+VBOXDIR="/home/user/sources"
 
 SLIC="$VBOXDIR/vboxdata/SLIC.bin"
 DSDT="$VBOXDIR/vboxdata/ACPI-DSDT.bin"
