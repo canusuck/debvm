@@ -37,9 +37,6 @@ sudo apt-get install -y subversion build-essential bcc iasl xsltproc uuid-dev \
     qttools5-dev-tools libqt5x11extras5-dev libssl-dev python-all-dev \
     git-svn kbuild iasl libpng-dev libsdl-dev yasm
     
-cd 
-mkdir sources
-cd sources
 svn co http://www.virtualbox.org/svn/vbox/trunk vbox
 chmod +x patch-vbox.sh obfuscate.sh
 cp patch-vbox.sh vbox/patch-vbox.sh
