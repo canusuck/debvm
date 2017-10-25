@@ -67,7 +67,7 @@ fi
 
 echo "Начниаем исправление (патчим) ВМ, подождите..."
 
-VBOXDIR="/home/user/sources"
+VBOXDIR="/home/user/debvm"
 
 SLIC="$VBOXDIR/obfuscator/SLIC.bin"
 DSDT="$VBOXDIR/obfuscator/ACPI-DSDT.bin"
