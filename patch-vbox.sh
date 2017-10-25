@@ -12,7 +12,7 @@
 ##################################################################################################################
 #
 # Каталоги и имена файлов
-SOURCESDIR=/home/user/sources/vbox                                  # Директория где находится исходный код VirtualBox 
+SOURCESDIR=/home/user/debvm/vbox                                    # Директория где находится исходный код VirtualBox 
 KMKTOOLSSUBDIR=kBuild/bin/linux.amd64                               # Где находится инструменты kmk например kmk_md5sum
 MD5SUMOUT=$SOURCESDIR/kmk_md5.out                                   # Лог md5sum к этому файлу
 VBOXMANAGE=$SOURCESDIR/out/linux.amd64/release/bin/VXoxManage       # Местоположение и имя двоичного файла VBoxManage (после переименования)
