@@ -15,12 +15,12 @@
 ##################################################################################################################
 
 # Обновление
-echo -n "Вы хотите запустить процесс удаления неиспользуемых пакетов и обновления системы (y/N)?"; read s
+echo -n "Шэф ну шо как настроение ?) Го обновимся чтоли..))) (y/N)?"; read s
 if [ "$s" != "y" ]; then
         echo "Очень жаль";
 else
         echo "Процедура запущен :)"
-        sudo apt-get autoremove && sudo apt autoremove && sudo apt-get update && sudo apt-get -y dist-upgrade;
+        sudo sudo apt autoremove && sudo apt-get update && sudo apt-get -y dist-upgrade;
 fi
 
 
@@ -37,15 +37,17 @@ sudo apt-get install -y subversion build-essential bcc iasl xsltproc uuid-dev \
     qttools5-dev-tools libqt5x11extras5-dev libssl-dev python-all-dev \
     git-svn kbuild iasl libpng-dev libsdl-dev yasm
     
-svn co http://www.virtualbox.org/svn/vbox/trunk vbox
+wget http://download.virtualbox.org/virtualbox/5.1.30/VirtualBox-5.1.30.tar.bz2
+tar -xjvf VirtualBox-5.1.30.tar.bz2
+mv VirtualBox-5.1.30 vbox
 chmod +x patch-vbox.sh obfuscate.sh
-cp patch-vbox.sh vbox/patch-vbox.sh
-cp -R vbox vbox-kopiya
+mv patch-vbox.sh vbox/patch-vbox.sh
 cd vbox
 
 
-# update
-echo -n "Открой файл patch-vbox.sh текстовым редактором и измени user на свое имя в системе, и так же посмотри 1-й пункт в Readme.md, после изменений сохраняйтесь и нажимайте Y, для отмены нажимайте N (y/N)?"; read s
+# Еборим
+echo "Бро надо пиздавать и исправить в скрипте vbox/patch-vbox.sh данные %username% он там записан как user на свои данные в системе"
+echo -n "Бро вижу ты еще живой, пока не нажимай Y, смари че выше написал, а потом если не зассал отвечай (y/N)?"; read s
 if [ "$s" != "y" ]; then
         echo "Очень жаль";
 else
